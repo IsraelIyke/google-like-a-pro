@@ -166,15 +166,6 @@ export default function Google() {
               </div>
             </Grid>
             <Grid item>
-              <input
-                type="text"
-                value={site}
-                onChange={(e) => setSite(e.target.value)}
-                className="inpu"
-                autoComplete="on"
-              />
-            </Grid>
-            <Grid item>
               <Textfield
                 type="text"
                 placeholder="exact site"
@@ -185,7 +176,6 @@ export default function Google() {
                 autoComplete="off"
               />
             </Grid>
-
             <Grid item>
               <input
                 type="checkbox"
