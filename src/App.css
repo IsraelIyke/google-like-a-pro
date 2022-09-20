@@ -1,7 +1,37 @@
-.container-eye-care {
+* {
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+}
+
+.param {
+  margin-top: 0.8rem;
   position: relative;
-  width: 100%;
-  min-height: 101.2vh;
+  z-index: 2;
+  color: hsl(60, 100%, 85%);
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+.para {
+  position: relative;
+  z-index: 2;
+  color: hsl(60, 100%, 85%);
+  text-align: center;
+  font-weight: 200;
+  font-size: 1rem;
+  margin-top: -0.1rem;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container-grayscale {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
   max-height: fit-content;
   display: flex;
   flex-direction: column;
@@ -10,8 +40,8 @@
 }
 .container-dark {
   position: relative;
-  width: 100%;
-  min-height: 101.2vh;
+  width: 100vw;
+  min-height: 100vh;
   max-height: fit-content;
   display: flex;
   flex-direction: column;
@@ -23,7 +53,7 @@ nav {
   height: 2rem;
   display: flex;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   background-color: transparent;
   color: rgb(255, 255, 176);
 }
@@ -37,6 +67,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .intensity-option li {
   color: purple;
@@ -135,10 +166,32 @@ nav ul {
 }
 .inpu {
   z-index: 2;
-  position: relative;
+  position: absolute;
   background-color: rgb(255, 255, 176);
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 0;
+  right: 0;
+}
+.checks {
   width: 10rem;
   height: 2rem;
+  font-size: 0.8rem;
+  padding: 10px;
+  outline: none;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 176);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.par {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .title {
   display: flex;
@@ -149,7 +202,7 @@ nav ul {
   align-items: center;
   position: relative;
   background-color: rgb(255, 255, 176);
-  margin-top: 1rem;
+  margin-top: -1rem;
   width: 30rem;
   height: 3rem;
   border-radius: 2rem;
@@ -212,4 +265,36 @@ nav ul {
   /* 100% {
     width: 0%;
   } */
+}
+
+@media screen and (max-width: 767px) {
+  .img {
+    width: 250px;
+    height: 250px;
+    margin-top: 1.6rem;
+    margin-left: -3rem;
+  }
+  .motion {
+    font-size: 2.5rem;
+  }
+  .motion-gray {
+    font-size: 2.5rem;
+  }
+  .input {
+    width: 17rem;
+  }
+  .sub-container {
+    width: 20rem;
+    margin-top: 0;
+  }
+  .search {
+    margin-top: 0.2rem;
+  }
+}
+
+@media screen and (max-width: 991px) and (min-width: 767px) {
+  .img {
+    margin-top: 1.6rem;
+    margin-left: -5rem;
+  }
 }

@@ -21,6 +21,7 @@
   border: 1px solid gray;
   box-sizing: border-box;
   border-radius: 5px;
+  background-color: rgb(255, 255, 176);
 }
 
 .form-input label {
@@ -39,8 +40,8 @@
 .form-input input:not(:placeholder-shown) + label {
   top: 0;
   font-size: 0.6rem;
-  color: hsl(39, 77%, 36%);
-  background: #fff;
+  color: black;
+  background: rgb(255, 255, 176);
   padding: 3px;
   border-radius: 8px;
 }
@@ -48,3 +49,8 @@
 .form-input input:focus {
   outline: 1.2px solid hsl(39, 77%, 36%);
 }
+/* @media screen and (max-width: 767px) {
+.form-input input{
+  width: ;
+}
+} */
