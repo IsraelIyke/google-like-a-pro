@@ -1,38 +1,97 @@
 import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 import gifs from "../images/search.gif";
+import gray from "../images/gray.gif";
 import { BsSearch } from "react-icons/bs";
+import { MdLightMode } from "react-icons/md";
+import { BsToggleOn, BsToggleOff, BsFillEyeFill } from "react-icons/bs";
+import Textfield from "./Textfield/textfield";
+import "./Textfield/textfield.css";
 
 export default function Google() {
   const [search, setSearch] = useState();
-  const [site, setSite] = useState(null);
+  const [site, setSite] = useState([]);
   const [exact, setExact] = useState();
-  const [checkSite, setCheckSite] = useState();
+  const [intensity, setIntensity] = useState(false);
+  const [eyeCare, setEyeCare] = useState(false);
 
-  if (site !== null) {
-    setCheckSite(true);
+  function handleIntensity() {
+    setIntensity((prev) => !prev);
   }
-
+  function handleEyeCare() {
+    setEyeCare((prev) => !prev);
+  }
   function handleSubmit() {
     setSearch((prev) => {
-      if (checkSite) {
-        return `site:${site} prev`;
+      if (site.length === 0 && !exact) {
+        return prev;
+      } else if (site.length > 0 && !exact) {
+        return `site:${site} ${prev}`;
+      } else if (site.length === 0 && exact) {
+        return `"${prev}"`;
+      } else if (site.length > 0 && exact) {
+        return `site:${site} "${prev}"`;
       }
     });
   }
-  // `${site !== null && `site:${site}`} ${exact ? `"${prev}"` : prev}`
-  // return `${checkSite && `site:${site}`} ${exact ? `"${prev}"` : prev}`
   function handleClear() {
     setSearch("");
   }
   return (
     <Box flexGrow={1}>
       <Grid container spacing={1} justifyContent="center">
-        <div className="container">
+        <div
+          className={
+            (eyeCare === false && "container-dark") ||
+            (eyeCare && "container-eye-care")
+          }
+        >
           <div className="blur"></div>
+          {intensity && (
+            <div className="close-window" onClick={handleIntensity}></div>
+          )}
+          <Grid item>
+            <nav className="sup-container">
+              <ul>
+                <li>
+                  {intensity && (
+                    <div className="intensity-option">
+                      <li className="percent">
+                        <li>0%</li>
+                        <li>50%</li>
+                        <li>100%</li>
+                      </li>
+
+                      <li className="percentage" onClick={handleEyeCare}>
+                        <li>grayscale</li>
+                        {eyeCare ? (
+                          <li>
+                            <BsToggleOn className="eye-icon" />
+                          </li>
+                        ) : (
+                          <li>
+                            <BsToggleOff className="eye-icon" />
+                          </li>
+                        )}
+                      </li>
+                    </div>
+                  )}
+                </li>
+                <li>
+                  <MdLightMode
+                    className="dark-icon"
+                    onClick={handleIntensity}
+                  />
+                </li>
+              </ul>
+            </nav>
+          </Grid>
           <Grid item>
             <div className="title">
-              <h2 dataText="Google">
+              <h2
+                className={eyeCare ? "motion-gray" : "motion"}
+                data-text="Google"
+              >
                 Google
                 <span
                   style={{
@@ -43,7 +102,10 @@ export default function Google() {
                   .
                 </span>
               </h2>
-              <h2 dataText="Like">
+              <h2
+                className={eyeCare ? "motion-gray" : "motion"}
+                data-text="Like"
+              >
                 Like
                 <span
                   style={{
@@ -54,7 +116,7 @@ export default function Google() {
                   .
                 </span>
               </h2>
-              <h2 dataText="A">
+              <h2 className={eyeCare ? "motion-gray" : "motion"} data-text="A">
                 A
                 <span
                   style={{
@@ -65,7 +127,10 @@ export default function Google() {
                   .
                 </span>
               </h2>
-              <h2 dataText="Pro">
+              <h2
+                className={eyeCare ? "motion-gray" : "motion"}
+                data-text="Pro"
+              >
                 Pro
                 <span
                   style={{
@@ -110,6 +175,18 @@ export default function Google() {
               />
             </Grid>
             <Grid item>
+              <Textfield
+                type="text"
+                placeholder="exact site"
+                id="site"
+                label="exact site"
+                setState={setSite}
+                value={site}
+                autoComplete="off"
+              />
+            </Grid>
+
+            <Grid item>
               <input
                 type="checkbox"
                 checked={exact}
@@ -123,7 +200,23 @@ export default function Google() {
           </Grid>
 
           <Grid>
-            <img src={gifs} alt="bg" className="img" width={500} height={500} />
+            {eyeCare ? (
+              <img
+                src={gray}
+                alt="bg"
+                className="img"
+                width={500}
+                height={500}
+              />
+            ) : (
+              <img
+                src={gifs}
+                alt="bg"
+                className="img"
+                width={500}
+                height={500}
+              />
+            )}
           </Grid>
         </div>
       </Grid>

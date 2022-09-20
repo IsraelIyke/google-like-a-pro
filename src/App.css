@@ -1,21 +1,109 @@
-* {
-  background-color: black;
-}
-.container {
+.container-eye-care {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 101.2vh;
+  max-height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: black;
+}
+.container-dark {
+  position: relative;
+  width: 100%;
+  min-height: 101.2vh;
+  max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+}
+nav {
+  width: 100vw;
+  height: 2rem;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  background-color: transparent;
+  color: rgb(255, 255, 176);
+}
+.intensity-option {
+  width: 10rem;
+  height: 6rem;
+  color: blue;
+  background-color: hsl(60, 100%, 85%);
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.intensity-option li {
+  color: purple;
+  font-size: 0.8rem;
+  background-color: transparent;
+}
+.intensity-option .percent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.percent li {
+  padding: 0.4rem;
+  width: 1.8rem;
+  height: 1rem;
+  margin-right: 0.2rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffc0, #e6e6a1);
+  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+  border-radius: 0.9rem;
+  cursor: pointer;
+}
+.intensity-option .percentage {
+  display: flex;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  background: linear-gradient(145deg, #ffffc0, #e6e6a1);
+  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+}
+
+.eye-icon {
+  background-color: transparent;
+  margin: 0 0.5rem 0 0.5rem;
+  padding-top: 0.7rem;
+}
+.percentage li {
+  font-size: 1.2rem;
+}
+nav li {
+  list-style: none;
+  background-color: transparent;
+}
+nav ul {
+  margin-left: auto;
+  font-size: 2rem;
+  display: flex;
+}
+.dark-icon {
+  background-color: transparent;
 }
 .blur {
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0);
-  border-radius: 16px;
   /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(5.5px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+.close-window {
+  background: transparent;
   position: absolute;
   top: 0;
   left: 0;
@@ -48,7 +136,9 @@
 .inpu {
   z-index: 2;
   position: relative;
-  background-color: wheat;
+  background-color: rgb(255, 255, 176);
+  width: 10rem;
+  height: 2rem;
 }
 .title {
   display: flex;
@@ -73,15 +163,34 @@
   font-size: 2rem;
   cursor: pointer;
 }
-h2 {
+.motion-gray {
+  color: white;
+  font-size: 4rem;
+  z-index: 2;
+  position: relative;
+  background-color: transparent;
+}
+.motion-gray::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: white;
+  -webkit-text-stroke: 0.1rem rgba(0, 0, 0, 0.507);
+  overflow: hidden;
+  animation: animate 4s linear;
+}
+.motion {
   color: purple;
   font-size: 4rem;
   z-index: 2;
   position: relative;
   background-color: transparent;
 }
-h2::before {
-  content: attr(dataText);
+.motion::before {
+  content: attr(data-text);
   position: absolute;
   top: 0;
   left: 0;
@@ -92,6 +201,7 @@ h2::before {
   overflow: hidden;
   animation: animate 4s linear;
 }
+
 @keyframes animate {
   0% {
     width: 0;
