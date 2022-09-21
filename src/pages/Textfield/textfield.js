@@ -2,7 +2,7 @@ import "./textfield.css";
 
 export default function Textfield(props) {
   return (
-    <div className="form-input">
+    <div className={`form-input ${props.grayscale ? "gray" : "dark"}`}>
       <input
         type={props.type}
         placeholder={props.placeholder}

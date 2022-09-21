@@ -7,13 +7,22 @@ import { MdLightMode } from "react-icons/md";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 import Textfield from "./Textfield/textfield";
 import "./Textfield/textfield.css";
+import { Link } from "react-router-dom";
 
 export default function Google() {
-  const [search, setSearch] = useState();
-  const [site, setSite] = useState([]);
-  const [exact, setExact] = useState();
   const [intensity, setIntensity] = useState(false);
   const [grayscale, setGrayscale] = useState(false);
+  const [search, setSearch] = useState();
+  const [site, setSite] = useState([]);
+  const [word, setWord] = useState([]);
+  const [omit, setOmit] = useState([]);
+  const [file, setFile] = useState([]);
+  const [year, setYear] = useState([]);
+  const [title, setTitle] = useState();
+  const [synonym, setSynonym] = useState([]);
+  const [location, setLocation] = useState([]);
+  const [related, setRelated] = useState();
+  const [exact, setExact] = useState();
 
   function handleIntensity() {
     setIntensity((prev) => !prev);
@@ -23,14 +32,185 @@ export default function Google() {
   }
   function handleSubmit() {
     setSearch((prev) => {
-      if (site.length === 0 && !exact) {
+      //condition1: all of the search specifiers are false
+      if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
         return prev;
-      } else if (site.length > 0 && !exact) {
+      }
+      //condition2: all of the search specifiers are false except for "search by site"
+      else if (
+        site.length > 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
         return `site:${site} ${prev}`;
-      } else if (site.length === 0 && exact) {
+      }
+      //condition3: all of the search specifiers are false except for "search exact phrase"
+      else if (
+        site.length === 0 &&
+        exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
         return `"${prev}"`;
-      } else if (site.length > 0 && exact) {
-        return `site:${site} "${prev}"`;
+      }
+      //condition4: all of the search specifiers are false except for "include exact word"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length > 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
+        return `${prev} "${word}"`;
+      }
+      //condition5: all of the search specifiers are false except for "omit a word"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length > 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
+        return `${prev} -${omit}`;
+      }
+      //condition6: all of the search specifiers are false except for "filetype"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length > 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
+        return `filetype:${file} ${prev}`;
+      }
+      //condition7: all of the search specifiers are false except for "year"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length > 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
+        return `inurl:${year} ${prev}`;
+      }
+      //condition8: all of the search specifiers are false except for "title"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0
+      ) {
+        return `allintitle:"${prev}"`;
+      }
+      //condition9: all of the search specifiers are false except for "synonym"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length > 0 &&
+        !related &&
+        location.length === 0
+      ) {
+        return `${prev} ~${synonym}`;
+      }
+      //condition10: all of the search specifiers are false except for "related sites"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        related &&
+        location.length === 0
+      ) {
+        return `related:${prev}`;
+      }
+      //condition11: all of the search specifiers are false except for "location"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length > 0
+      ) {
+        return `location:${location} ${prev}`;
+      }
+      //conditionN: all of the search specifiers are true
+      else if (
+        site.length > 0 &&
+        exact &&
+        word.length > 0 &&
+        omit.length > 0 &&
+        file.length > 0 &&
+        year.length > 0 &&
+        title &&
+        synonym.length > 0 &&
+        related &&
+        location.length > 0
+      ) {
+        return `site:${site} filetype:${file} inurl:${year} allintitle:"${prev}" ~${synonym} "${word}" -${omit} location:${location} related:${prev}`;
       }
     });
   }
@@ -54,6 +234,9 @@ export default function Google() {
             <Grid item>
               <nav className="sup-container">
                 <ul>
+                  <Link to="/google-like-a-pro/guide">
+                    <li className="guide">Guide</li>
+                  </Link>
                   <li>
                     {intensity && (
                       <div className="intensity-option">
@@ -154,7 +337,9 @@ export default function Google() {
               target="_blank"
             >
               <Grid item>
-                <div className="sub-container">
+                <div
+                  className={grayscale ? "sub-container-gray" : "sub-container"}
+                >
                   <input
                     type="text"
                     name="q"
@@ -180,27 +365,194 @@ export default function Google() {
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="exact site"
+                    placeholder="exact website"
                     id="site"
-                    label="exact site"
+                    label="exact website"
                     setState={setSite}
                     value={site}
                     autoComplete="off"
+                    grayscale={grayscale}
                   />
                 </Grid>
 
-                <Grid item className="checks">
-                  <div>exact phrase</div>
+                <Grid item className={grayscale ? "checks-gray" : "checks"}>
+                  <label htmlFor="exact">exact phrase</label>
                   <input
                     type="checkbox"
                     checked={exact}
                     onChange={(e) => setExact(e.target.checked)}
                     className="inpu"
+                    id="exact"
+                  />
+                </Grid>
+              </div>
+
+              {/* 3,4 */}
+              <div className="par">
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="include exact word"
+                    id="word"
+                    label="include exact word"
+                    setState={setWord}
+                    value={word}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="omit exact word"
+                    id="omit"
+                    label="omit exact word"
+                    setState={setOmit}
+                    value={omit}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+              </div>
+
+              {/* 5,6 */}
+              <div className="par">
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="exact filetype eg pdf"
+                    id="file"
+                    label="exact filetype eg pdf"
+                    setState={setFile}
+                    value={file}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="publish year eg 2009"
+                    id="year"
+                    label="publish year eg 2009"
+                    setState={setYear}
+                    value={year}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+              </div>
+
+              {/* 7,8 */}
+              <div className="par">
+                <Grid item className={grayscale ? "checks-gray" : "checks"}>
+                  <label htmlFor="exact">exact article title</label>
+                  <input
+                    type="checkbox"
+                    checked={title}
+                    onChange={(e) => setTitle(e.target.checked)}
+                    className="inpu"
+                    id="exact"
+                  />
+                </Grid>
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="include synonym"
+                    id="synonym"
+                    label="include synonym"
+                    setState={setSynonym}
+                    value={synonym}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+              </div>
+
+              {/* 9,10 */}
+              <div className="par">
+                <Grid item className={grayscale ? "checks-gray" : "checks"}>
+                  <label htmlFor="exact">find related website</label>
+                  <input
+                    type="checkbox"
+                    checked={related}
+                    onChange={(e) => setRelated(e.target.checked)}
+                    className="inpu"
+                    id="related"
+                  />
+                </Grid>
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="specific geo location"
+                    id="location"
+                    label="specific geo location"
+                    setState={setLocation}
+                    value={location}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+              </div>
+              {/*  */}
+              <div className="par">
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="range eg 2004..2019"
+                    id="word"
+                    label="range eg 2004..2019"
+                    setState={setWord}
+                    value={word}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="omit exact word"
+                    id="omit"
+                    label="omit exact word"
+                    setState={setOmit}
+                    value={omit}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+              </div>
+
+              {/*  */}
+              <div className="par">
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="include exact word"
+                    id="word"
+                    label="include exact word"
+                    setState={setWord}
+                    value={word}
+                    autoComplete="off"
+                    grayscale={grayscale}
+                  />
+                </Grid>
+                <Grid item>
+                  <Textfield
+                    type="text"
+                    placeholder="omit exact word"
+                    id="omit"
+                    label="omit exact word"
+                    setState={setOmit}
+                    value={omit}
+                    autoComplete="off"
+                    grayscale={grayscale}
                   />
                 </Grid>
               </div>
             </form>
-
+            <Grid item>
+              <div className="footer">all rights reserved :)</div>
+            </Grid>
             <Grid>
               {grayscale ? (
                 <img
