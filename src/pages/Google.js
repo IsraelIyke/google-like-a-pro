@@ -21,6 +21,10 @@ export default function Google() {
   const [title, setTitle] = useState();
   const [synonym, setSynonym] = useState([]);
   const [location, setLocation] = useState([]);
+  const [range, setRange] = useState([]);
+  const [omitSite, setOmitSite] = useState([]);
+  const [before, setBefore] = useState([]);
+  const [after, setAfter] = useState([]);
   const [related, setRelated] = useState();
   const [exact, setExact] = useState();
 
@@ -43,7 +47,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return prev;
       }
@@ -58,7 +66,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `site:${site} ${prev}`;
       }
@@ -73,7 +85,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `"${prev}"`;
       }
@@ -88,7 +104,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `${prev} "${word}"`;
       }
@@ -103,7 +123,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `${prev} -${omit}`;
       }
@@ -118,7 +142,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `filetype:${file} ${prev}`;
       }
@@ -133,7 +161,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `inurl:${year} ${prev}`;
       }
@@ -148,7 +180,11 @@ export default function Google() {
         title &&
         synonym.length === 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `allintitle:"${prev}"`;
       }
@@ -163,7 +199,11 @@ export default function Google() {
         !title &&
         synonym.length > 0 &&
         !related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `${prev} ~${synonym}`;
       }
@@ -178,7 +218,11 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         related &&
-        location.length === 0
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `related:${prev}`;
       }
@@ -193,9 +237,89 @@ export default function Google() {
         !title &&
         synonym.length === 0 &&
         !related &&
-        location.length > 0
+        location.length > 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
       ) {
         return `location:${location} ${prev}`;
+      }
+      //condition12: all of the search specifiers are false except for "range"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0 &&
+        range.length > 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length === 0
+      ) {
+        return `${prev} ${range}`;
+      }
+      //condition13: all of the search specifiers are false except for "range"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length > 0 &&
+        before.length === 0 &&
+        after.length === 0
+      ) {
+        return `-site:${omitSite} ${prev}`;
+      }
+      //condition13: all of the search specifiers are false except for "range"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length > 0 &&
+        after.length === 0
+      ) {
+        return `BEFORE:${before} ${prev}`;
+      }
+      //condition13: all of the search specifiers are false except for "range"
+      else if (
+        site.length === 0 &&
+        !exact &&
+        word.length === 0 &&
+        omit.length === 0 &&
+        file.length === 0 &&
+        year.length === 0 &&
+        !title &&
+        synonym.length === 0 &&
+        !related &&
+        location.length === 0 &&
+        range.length === 0 &&
+        omitSite.length === 0 &&
+        before.length === 0 &&
+        after.length > 0
+      ) {
+        return `AFTER:${after} ${prev}`;
       }
       //conditionN: all of the search specifiers are true
       else if (
@@ -208,9 +332,13 @@ export default function Google() {
         title &&
         synonym.length > 0 &&
         related &&
-        location.length > 0
+        location.length > 0 &&
+        range.length > 0 &&
+        omitSite.length > 0 &&
+        before.length > 0 &&
+        after.length > 0
       ) {
-        return `site:${site} filetype:${file} inurl:${year} allintitle:"${prev}" ~${synonym} "${word}" -${omit} location:${location} related:${prev}`;
+        return `site:${site} filetype:${file} inurl:${year} allintitle:"${prev}" ~${synonym} "${word}" -${omit} ${range} location:${location} -site:${omitSite} related:${prev}`;
       }
     });
   }
@@ -365,9 +493,9 @@ export default function Google() {
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="exact website"
+                    placeholder="specific website"
                     id="site"
-                    label="exact website"
+                    label="specific website"
                     setState={setSite}
                     value={site}
                     autoComplete="off"
@@ -392,9 +520,9 @@ export default function Google() {
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="include exact word"
+                    placeholder="include specific word"
                     id="word"
-                    label="include exact word"
+                    label="include specific word"
                     setState={setWord}
                     value={word}
                     autoComplete="off"
@@ -404,9 +532,9 @@ export default function Google() {
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="omit exact word"
+                    placeholder="omit specific word"
                     id="omit"
-                    label="omit exact word"
+                    label="omit specific word"
                     setState={setOmit}
                     value={omit}
                     autoComplete="off"
@@ -432,9 +560,9 @@ export default function Google() {
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="publish year eg 2009"
+                    placeholder="ref year eg 2009"
                     id="year"
-                    label="publish year eg 2009"
+                    label="ref year eg 2009"
                     setState={setYear}
                     value={year}
                     autoComplete="off"
@@ -494,16 +622,16 @@ export default function Google() {
                   />
                 </Grid>
               </div>
-              {/*  */}
+              {/* 11,12 */}
               <div className="par">
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="range eg 2004..2019"
-                    id="word"
-                    label="range eg 2004..2019"
-                    setState={setWord}
-                    value={word}
+                    placeholder="range eg 2yrs..9yrs"
+                    id="range"
+                    label="range eg 2yrs..9yrs"
+                    setState={setRange}
+                    value={range}
                     autoComplete="off"
                     grayscale={grayscale}
                   />
@@ -511,27 +639,27 @@ export default function Google() {
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="omit exact word"
-                    id="omit"
-                    label="omit exact word"
-                    setState={setOmit}
-                    value={omit}
+                    placeholder="exclude specific website"
+                    id="omitSite"
+                    label="exclude a website"
+                    setState={setOmitSite}
+                    value={omitSite}
                     autoComplete="off"
                     grayscale={grayscale}
                   />
                 </Grid>
               </div>
 
-              {/*  */}
+              {/* 13,14 */}
               <div className="par">
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="include exact word"
-                    id="word"
-                    label="include exact word"
-                    setState={setWord}
-                    value={word}
+                    placeholder="doc pre a yr eg 2009"
+                    id="before"
+                    label="doc pre a yr eg 2009"
+                    setState={setBefore}
+                    value={before}
                     autoComplete="off"
                     grayscale={grayscale}
                   />
@@ -539,11 +667,11 @@ export default function Google() {
                 <Grid item>
                   <Textfield
                     type="text"
-                    placeholder="omit exact word"
+                    placeholder="doc post a yr eg 2011"
                     id="omit"
-                    label="omit exact word"
-                    setState={setOmit}
-                    value={omit}
+                    label="doc post a yr eg 2011"
+                    setState={setAfter}
+                    value={after}
                     autoComplete="off"
                     grayscale={grayscale}
                   />
