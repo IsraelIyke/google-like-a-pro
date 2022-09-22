@@ -3,12 +3,49 @@
   border: 0;
   padding: 0;
 }
+.prev {
+  width: 14.5rem;
+  height: 3rem;
+  position: absolute;
+  background-color: white;
+  z-index: 3;
+  padding: 0.6rem;
+  margin-top: -5rem;
+  border-radius: 0.6rem;
+  transition: 0.4s ease;
+  display: flex;
+  align-items: center;
+}
+.prev div {
+  padding: 0.3rem;
+  width: 3rem;
+  height: 2rem;
+  margin-left: 0.7rem;
+  border-radius: 0.6rem;
+  background-color: black;
+  text-align: center;
+  color: hsl(60, 100%, 85%);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.prev div:hover {
+  background-color: hsl(0, 0%, 26%);
+}
+.history {
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  color: purple;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
 .guide {
   left: 0;
   position: absolute;
   font-size: 1.1rem;
   margin-left: 0.6rem;
   color: hsl(60, 100%, 85%);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .guide a {
   color: hsl(60, 100%, 85%);
@@ -62,14 +99,13 @@ nav {
   height: 2rem;
   display: flex;
   position: relative;
-  z-index: 3;
+  z-index: 4;
   background-color: transparent;
   color: rgb(255, 255, 176);
 }
 .intensity-option {
   width: 10rem;
   height: 6rem;
-  color: blue;
   background-color: hsl(60, 100%, 85%);
   border-radius: 0.3rem;
   display: flex;
@@ -147,6 +183,15 @@ nav ul {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+}
+.close-window2 {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -162,10 +207,10 @@ nav ul {
   background-color: transparent;
   position: relative;
   z-index: 2;
-  width: 27rem;
+  width: 25rem;
   height: 3rem;
   border-radius: 2rem;
-  padding-left: 2rem;
+  padding-left: 0.7rem;
   border: none;
   font-size: 1.3rem;
 }
@@ -220,6 +265,7 @@ nav ul {
 }
 .title {
   display: flex;
+  margin-left: 1rem;
 }
 .sub-container {
   z-index: 2;
@@ -341,7 +387,7 @@ nav ul {
     font-size: 2.5rem;
   }
   .input {
-    width: 17rem;
+    width: 15rem;
   }
   .sub-container {
     width: 20rem;

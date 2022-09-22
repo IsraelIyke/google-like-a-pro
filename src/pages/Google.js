@@ -1,18 +1,22 @@
-import { Box, Grid } from "@mui/material";
-import { useState } from "react";
+import { Box, Grid, Paper } from "@mui/material";
+import { useState, forwardRef } from "react";
 import gifs from "../images/search.gif";
 import gray from "../images/gray.gif";
-import { BsSearch } from "react-icons/bs";
-import { MdLightMode } from "react-icons/md";
-import { BsToggleOn, BsToggleOff } from "react-icons/bs";
+import { MdLightMode, MdHistory } from "react-icons/md";
+import { BsToggleOn, BsToggleOff, BsSearch } from "react-icons/bs";
 import Textfield from "./Textfield/textfield";
 import "./Textfield/textfield.css";
 import { Link } from "react-router-dom";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function Google() {
   const [intensity, setIntensity] = useState(false);
   const [grayscale, setGrayscale] = useState(false);
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const [site, setSite] = useState([]);
   const [word, setWord] = useState([]);
   const [omit, setOmit] = useState([]);
@@ -27,16 +31,37 @@ export default function Google() {
   const [after, setAfter] = useState([]);
   const [related, setRelated] = useState();
   const [exact, setExact] = useState();
-  // const [checkSite, setCheckSite] = useState();
+  const [history, setHistory] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handle = () => {
+    setError(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+    setError(false);
+  };
 
   function handleIntensity() {
     setIntensity((prev) => !prev);
   }
+  function handleCloseWindow() {
+    setHistory(false);
+  }
+
   function handleEyeCare() {
     setGrayscale((prev) => !prev);
   }
   function handleSubmit() {
-    // setCheckSite(site ? `site:${site}` : "");
+    localStorage.setItem("search", search);
     setSearch((prev) => {
       //condition1: all of the search specifiers are false
       if (
@@ -57,7 +82,7 @@ export default function Google() {
       ) {
         return prev;
       }
-      //conditionN: all of the search specifiers are true
+      //condition2: all of the search specifiers are true
       else if (
         site ||
         exact ||
@@ -74,23 +99,47 @@ export default function Google() {
         before ||
         after
       ) {
-        return `${site ? `site:${site}` : ""} ${prev} ${
-          file > 0 ? `filetype:${file}` : ""
-        } ${year.length > 0 ? `inurl:${year}` : ""} ${
-          synonym > 0 ? `~${synonym}` : ""
-        } ${word > 0 ? `"${word}"` : ""} ${omit > 0 ? `-${omit}` : ""} ${
-          range > 0 ? `${range}` : ""
-        } ${location > 0 ? `location:${location}` : ""} ${
-          omitSite > 0 ? `-site:${omitSite}` : ""
-        } ${range > 0 ? `${range}` : ""} ${
-          title > 0 ? `allintitle:"${prev}"` : ""
-        } ${related > 0 ? `related:${prev}` : ""}`;
+        return `${site.length > 0 ? `site:${site}` : ""}${exact ? " " : ""}${
+          exact ? `"${prev}"` : prev
+        }${file.length > 0 ? " " : ""}${
+          file.length > 0 ? `filetype:${file}` : ""
+        }${year.length > 0 ? " " : ""}${
+          year.length > 0 ? `inurl:${year}` : ""
+        }${synonym.length > 0 ? " " : ""}${
+          synonym.length > 0 ? `~${synonym}` : ""
+        }${word.length > 0 ? " " : ""}${word.length > 0 ? `"${word}"` : ""}${
+          omit.length > 0 ? " " : ""
+        }${omit.length > 0 ? `-${omit}` : ""}${range.length > 0 ? " " : ""}${
+          range.length > 0 ? `${range}` : ""
+        }${location.length > 0 ? " " : ""}${
+          location.length > 0 ? `location:${location}` : ""
+        }${omitSite.length > 0 ? " " : ""}${
+          omitSite.length > 0 ? `-site:${omitSite}` : ""
+        }${before.length > 0 ? " " : ""}${
+          before.length > 0 ? `BEFORE:${before}` : ""
+        }${after.length > 0 ? " " : ""}${
+          after.length > 0 ? `AFTER:${after}` : ""
+        }${title ? " " : ""}${title ? `allintitle:"${prev}"` : ""}${
+          related ? " " : ""
+        }${related ? `related:${prev}` : ""}`;
       }
     });
   }
-
+  function handleHistory() {
+    setHistory((prev) => !prev);
+  }
+  function handleHistoryClear() {
+    setHistory(false);
+    const checkStorage = localStorage.getItem("search");
+    if (checkStorage) {
+      localStorage.removeItem("search");
+      handleClick();
+    } else {
+      handle();
+    }
+  }
   function handleClear() {
-    setSearch("");
+    setSearch(localStorage.getItem("search"));
   }
   return (
     <div
@@ -99,12 +148,26 @@ export default function Google() {
         (grayscale && "container-grayscale")
       }
     >
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Success! previous search cleared
+        </Alert>
+      </Snackbar>
+      <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+          You don't have any stored search
+        </Alert>
+      </Snackbar>
       <Box flexGrow={1}>
         <Grid container spacing={1} justifyContent="center">
           <div className="container">
             <div className="blur"></div>
             {intensity && (
               <div className="close-window" onClick={handleIntensity}></div>
+            )}
+
+            {history && (
+              <div className="close-window2" onClick={handleCloseWindow}></div>
             )}
             <Grid item>
               <nav className="sup-container">
@@ -215,6 +278,13 @@ export default function Google() {
                 <div
                   className={grayscale ? "sub-container-gray" : "sub-container"}
                 >
+                  <MdHistory className="history" onClick={handleHistory} />
+                  {history && (
+                    <Paper className="prev" elevation={5}>
+                      clear previous search{" "}
+                      <div onClick={handleHistoryClear}>yes</div>
+                    </Paper>
+                  )}
                   <input
                     type="text"
                     name="q"
@@ -415,7 +485,7 @@ export default function Google() {
                   <Textfield
                     type="text"
                     placeholder="doc post a yr eg 2011"
-                    id="omit"
+                    id="after"
                     label="doc post a yr eg 2011"
                     setState={setAfter}
                     value={after}
