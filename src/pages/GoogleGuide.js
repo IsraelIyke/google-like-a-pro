@@ -6,7 +6,11 @@ const GoogleGuide = () => {
       Google Like A Pro Guide
       <br />
       please don't mind the simple design interface <br />
-      guide coming soon...
+      guide coming soon...maybe :) <br />
+      quick note: focus on the search box after a previous search by
+      click/tapping on it to return that previous search and clear the search
+      input container your specifiers/operators. Although, this should happen
+      automatically.
     </div>
   );
 };

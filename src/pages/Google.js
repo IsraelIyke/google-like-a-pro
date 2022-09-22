@@ -590,7 +590,8 @@ export default function Google() {
                   (intensityHundredPercent && "footer100")
                 }
               >
-                all rights reserved :)
+                <a href="mailto:nwangwujeremy@gmail.com">contact</a>
+                <div>all rights reserved to google :)</div>
               </div>
             </Grid>
             <Grid>
