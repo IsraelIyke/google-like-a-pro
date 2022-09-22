@@ -50,6 +50,42 @@
 .guide a {
   color: hsl(60, 100%, 85%);
 }
+.guide-gray {
+  left: 0;
+  position: absolute;
+  font-size: 1.1rem;
+  margin-left: 0.6rem;
+  color: white;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.guide-gray a {
+  color: hsl(60, 100%, 85%);
+}
+.guide50 {
+  left: 0;
+  position: absolute;
+  font-size: 1.1rem;
+  margin-left: 0.6rem;
+  color: hsl(60, 100%, 85%);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.guide50 a {
+  color: white;
+}
+.guide100 {
+  left: 0;
+  position: absolute;
+  font-size: 1.1rem;
+  margin-left: 0.6rem;
+  color: purple;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.guide100 a {
+  color: purple;
+}
 .param {
   margin-top: 0.8rem;
   position: relative;
@@ -59,10 +95,46 @@
   font-weight: 900;
   font-size: 1.2rem;
 }
+.param-gray {
+  margin-top: 0.8rem;
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+.param100 {
+  margin-top: 0.8rem;
+  position: relative;
+  z-index: 2;
+  color: purple;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
 .para {
   position: relative;
   z-index: 2;
   color: hsl(60, 100%, 85%);
+  text-align: center;
+  font-weight: 200;
+  font-size: 1rem;
+  margin-top: -0.1rem;
+}
+.para-gray {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  font-weight: 200;
+  font-size: 1rem;
+  margin-top: -0.1rem;
+}
+.para100 {
+  position: relative;
+  z-index: 2;
+  color: black;
   text-align: center;
   font-weight: 200;
   font-size: 1rem;
@@ -82,6 +154,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
   background-color: black;
 }
 .container-dark {
@@ -93,6 +166,26 @@
   flex-direction: column;
   align-items: center;
   background-color: black;
+}
+.container-dark50 {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: hsl(0, 0%, 50%);
+}
+.container-dark100 {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
 }
 nav {
   width: 100vw;
@@ -124,16 +217,80 @@ nav {
   justify-content: center;
   align-items: center;
 }
-.percent li {
+.intensity-option .percent p {
   padding: 0.4rem;
-  width: 1.8rem;
-  height: 1rem;
+  width: 2.5rem;
+  height: 2rem;
+  margin-bottom: -0.1rem;
+  margin-top: -0.2rem;
   margin-right: 0.2rem;
-  border-radius: 50%;
   background: linear-gradient(145deg, #ffffc0, #e6e6a1);
   box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
   border-radius: 0.9rem;
   cursor: pointer;
+}
+.intensity-option100 {
+  width: 10rem;
+  height: 6rem;
+  background-color: hsl(60, 100%, 85%);
+  box-shadow: 2px 2px 2px gray;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.intensity-option100 li {
+  color: purple;
+  font-size: 0.8rem;
+  background-color: transparent;
+}
+.intensity-option100 .percent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.intensity-option-gray {
+  width: 10rem;
+  height: 6rem;
+  background-color: white;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.intensity-option-gray li {
+  color: black;
+  font-size: 0.8rem;
+  background-color: transparent;
+}
+.intensity-option-gray .percent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intensity-option-gray .percent p {
+  padding: 0.4rem;
+  width: 2.5rem;
+  height: 2rem;
+  margin-bottom: -0.1rem;
+  margin-top: -0.2rem;
+  margin-right: 0.2rem;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 7px 7px 14px #b8b8b8, -7px -7px 14px #ffffff;
+  border-radius: 0.9rem;
+  cursor: pointer;
+}
+.active {
+  color: gray;
+  font-weight: 900;
+  position: relative;
+  z-index: 6;
 }
 .intensity-option .percentage {
   display: flex;
@@ -145,14 +302,51 @@ nav {
   background: linear-gradient(145deg, #ffffc0, #e6e6a1);
   box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
 }
-
+.intensity-option-gray .percentage {
+  display: flex;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 7px 7px 14px #b8b8b8, -7px -7px 14px #ffffff;
+}
+.intensity-option100 .percentage {
+  display: flex;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  background: linear-gradient(145deg, #ffffc0, #e6e6a1);
+  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+}
+.intensity-option100 .percent p {
+  padding: 0.4rem;
+  width: 2.5rem;
+  height: 2rem;
+  margin-bottom: -0.1rem;
+  margin-top: -0.2rem;
+  margin-right: 0.2rem;
+  background: linear-gradient(145deg, #ffffc0, #e6e6a1);
+  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+  border-radius: 0.9rem;
+  cursor: pointer;
+}
+.percentage li {
+  padding-left: 0.5rem;
+}
 .eye-icon {
   background-color: transparent;
-  margin: 0 0.5rem 0 0.5rem;
+  /* margin: 0 0.5rem 0 0.5rem; */
+  margin-top: -0.6rem;
   padding-top: 0.7rem;
+  font-size: 2.4rem;
 }
 .percentage li {
   font-size: 1.2rem;
+  height: 2rem;
 }
 nav li {
   list-style: none;
@@ -165,6 +359,14 @@ nav ul {
 }
 .dark-icon {
   background-color: transparent;
+}
+.dark-icon-gray {
+  background-color: transparent;
+  color: white;
+}
+.dark-icon100 {
+  background-color: transparent;
+  color: purple;
 }
 .blur {
   background: rgba(255, 255, 255, 0);
@@ -362,13 +564,28 @@ nav ul {
   } */
 }
 .footer {
-  /* width: 80%; */
   font-size: 0.8rem;
   position: absolute;
   z-index: 2;
-  /* text-align: right; */
   color: hsl(60, 100%, 85%);
-  /* margin-top: auto; */
+  bottom: 0;
+  right: 0;
+  margin-right: 1rem;
+}
+.footer-gray {
+  font-size: 0.8rem;
+  position: absolute;
+  z-index: 2;
+  color: white;
+  bottom: 0;
+  right: 0;
+  margin-right: 1rem;
+}
+.footer100 {
+  font-size: 0.8rem;
+  position: absolute;
+  z-index: 2;
+  color: purple;
   bottom: 0;
   right: 0;
   margin-right: 1rem;

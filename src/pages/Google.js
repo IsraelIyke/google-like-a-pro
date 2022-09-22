@@ -34,6 +34,9 @@ export default function Google() {
   const [history, setHistory] = useState(false);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
+  const [intensityZeroPercent, setIntensityZeroPercent] = useState(true);
+  const [intensityFiftyPercent, setIntensityFiftyPercent] = useState(false);
+  const [intensityHundredPercent, setIntensityHundredPercent] = useState(false);
 
   const handleClick = () => {
     setOpen(true);
@@ -59,6 +62,30 @@ export default function Google() {
 
   function handleEyeCare() {
     setGrayscale((prev) => !prev);
+    if (!grayscale) {
+      setIntensityZeroPercent(true);
+    }
+    setIntensityFiftyPercent(false);
+    setIntensityHundredPercent(false);
+  }
+
+  function handle0() {
+    setIntensityZeroPercent(true);
+    setIntensityFiftyPercent(false);
+    setIntensityHundredPercent(false);
+    setGrayscale(false);
+  }
+  function handle50() {
+    setIntensityZeroPercent(false);
+    setIntensityFiftyPercent(true);
+    setIntensityHundredPercent(false);
+    setGrayscale(false);
+  }
+  function handle100() {
+    setIntensityZeroPercent(false);
+    setIntensityFiftyPercent(false);
+    setIntensityHundredPercent(true);
+    setGrayscale(false);
   }
   function handleSubmit() {
     localStorage.setItem("search", search);
@@ -144,7 +171,9 @@ export default function Google() {
   return (
     <div
       className={
-        (grayscale === false && "container-dark") ||
+        (intensityZeroPercent && "container-dark") ||
+        (intensityFiftyPercent && "container-dark50") ||
+        (intensityHundredPercent && "container-dark100") ||
         (grayscale && "container-grayscale")
       }
     >
@@ -173,15 +202,46 @@ export default function Google() {
               <nav className="sup-container">
                 <ul>
                   <Link to="/google-like-a-pro/guide">
-                    <li className="guide">Guide</li>
+                    <li
+                      className={
+                        (grayscale && "guide-gray") ||
+                        (intensityZeroPercent && "guide") ||
+                        (intensityFiftyPercent && "guide50") ||
+                        (intensityHundredPercent && "guide100")
+                      }
+                    >
+                      Guide
+                    </li>
                   </Link>
                   <li>
                     {intensity && (
-                      <div className="intensity-option">
+                      <div
+                        className={
+                          (grayscale && "intensity-option-gray") ||
+                          (intensityZeroPercent && "intensity-option") ||
+                          (intensityFiftyPercent && "intensity-option") ||
+                          (intensityHundredPercent && "intensity-option100")
+                        }
+                      >
                         <li className="percent">
-                          <li>0%</li>
-                          <li>50%</li>
-                          <li>100%</li>
+                          <p
+                            className={intensityZeroPercent && "active"}
+                            onClick={handle0}
+                          >
+                            0%
+                          </p>
+                          <p
+                            className={intensityFiftyPercent && "active"}
+                            onClick={handle50}
+                          >
+                            50%
+                          </p>
+                          <p
+                            className={intensityHundredPercent && "active"}
+                            onClick={handle100}
+                          >
+                            100%
+                          </p>
                         </li>
 
                         <li className="percentage" onClick={handleEyeCare}>
@@ -201,7 +261,12 @@ export default function Google() {
                   </li>
                   <li>
                     <MdLightMode
-                      className="dark-icon"
+                      className={
+                        (grayscale && "dark-icon-gray") ||
+                        (intensityZeroPercent && "dark-icon") ||
+                        (intensityFiftyPercent && "dark-icon50") ||
+                        (intensityHundredPercent && "dark-icon100")
+                      }
                       onClick={handleIntensity}
                     />
                   </li>
@@ -301,10 +366,28 @@ export default function Google() {
                 </div>
               </Grid>
               <Grid item>
-                <div className="param">Search specifiers</div>
+                <div
+                  className={
+                    (grayscale && "param-gray") ||
+                    (intensityZeroPercent && "param") ||
+                    (intensityFiftyPercent && "param") ||
+                    (intensityHundredPercent && "param100")
+                  }
+                >
+                  Search specifiers
+                </div>
               </Grid>
               <Grid item>
-                <p className="para">use only relevant specifiers</p>
+                <p
+                  className={
+                    (grayscale && "para-gray") ||
+                    (intensityZeroPercent && "para") ||
+                    (intensityFiftyPercent && "para") ||
+                    (intensityHundredPercent && "para100")
+                  }
+                >
+                  use only relevant specifiers
+                </p>
               </Grid>
               <div className="par">
                 <Grid item>
@@ -496,7 +579,16 @@ export default function Google() {
               </div>
             </form>
             <Grid item>
-              <div className="footer">all rights reserved :)</div>
+              <div
+                className={
+                  (grayscale && "footer-gray") ||
+                  (intensityZeroPercent && "footer") ||
+                  (intensityFiftyPercent && "footer") ||
+                  (intensityHundredPercent && "footer100")
+                }
+              >
+                all rights reserved :)
+              </div>
             </Grid>
             <Grid>
               {grayscale ? (
