@@ -127,7 +127,7 @@ export default function Google() {
         after
       ) {
         return `${site.length > 0 ? `site:${site}` : ""}${exact ? " " : ""}${
-          exact ? `"${prev}"` : prev
+          exact ? `"${prev}"` : ` ${prev}`
         }${file.length > 0 ? " " : ""}${
           file.length > 0 ? `filetype:${file}` : ""
         }${year.length > 0 ? " " : ""}${
@@ -343,10 +343,13 @@ export default function Google() {
                 <div
                   className={grayscale ? "sub-container-gray" : "sub-container"}
                 >
-                  <MdHistory className="history" onClick={handleHistory} />
+                  <MdHistory
+                    className={grayscale ? "history-gray" : "history"}
+                    onClick={handleHistory}
+                  />
                   {history && (
                     <Paper className="prev" elevation={5}>
-                      clear previous search{" "}
+                      clear previous search
                       <div onClick={handleHistoryClear}>yes</div>
                     </Paper>
                   )}
@@ -480,7 +483,7 @@ export default function Google() {
                     checked={title}
                     onChange={(e) => setTitle(e.target.checked)}
                     className="inpu"
-                    id="exact"
+                    id="title"
                   />
                 </Grid>
                 <Grid item>

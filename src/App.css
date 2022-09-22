@@ -24,7 +24,7 @@
   border-radius: 0.6rem;
   background-color: black;
   text-align: center;
-  color: hsl(60, 100%, 85%);
+  color: white;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -35,6 +35,13 @@
   margin-left: 0.5rem;
   font-size: 2rem;
   color: purple;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.history-gray {
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  color: black;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -225,7 +232,7 @@ nav {
   margin-top: -0.2rem;
   margin-right: 0.2rem;
   background: linear-gradient(145deg, #ffffc0, #e6e6a1);
-  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+  box-shadow: 3px 3px 2px #99996b, -5px -5px 10px #ffffc0;
   border-radius: 0.9rem;
   cursor: pointer;
 }
@@ -233,7 +240,7 @@ nav {
   width: 10rem;
   height: 6rem;
   background-color: hsl(60, 100%, 85%);
-  box-shadow: 2px 2px 2px gray;
+  box-shadow: 3px 3px 2px gray;
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -282,13 +289,18 @@ nav {
   margin-top: -0.2rem;
   margin-right: 0.2rem;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  box-shadow: 7px 7px 14px #b8b8b8, -7px -7px 14px #ffffff;
+  box-shadow: 3px 3px 2px #b8b8b8, -3px -3px 2px #ffffff;
   border-radius: 0.9rem;
   cursor: pointer;
 }
 .active {
   color: gray;
-  font-weight: 900;
+  font-weight: 800;
+  /* text-align: center; */
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 6;
 }
@@ -300,7 +312,7 @@ nav {
   align-items: center;
   border-radius: 2rem;
   background: linear-gradient(145deg, #ffffc0, #e6e6a1);
-  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+  box-shadow: 3px 3px 2px #99996b, -5px -5px 10px #ffffc0;
 }
 .intensity-option-gray .percentage {
   display: flex;
@@ -310,7 +322,7 @@ nav {
   align-items: center;
   border-radius: 2rem;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  box-shadow: 7px 7px 14px #b8b8b8, -7px -7px 14px #ffffff;
+  box-shadow: 3px 3px 2px #b8b8b8, -7px -7px 14px #ffffff;
 }
 .intensity-option100 .percentage {
   display: flex;
@@ -320,7 +332,7 @@ nav {
   align-items: center;
   border-radius: 2rem;
   background: linear-gradient(145deg, #ffffc0, #e6e6a1);
-  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+  box-shadow: 3px 3px 2px #99996b, -5px -5px 10px #ffffc0;
 }
 .intensity-option100 .percent p {
   padding: 0.4rem;
@@ -330,7 +342,7 @@ nav {
   margin-top: -0.2rem;
   margin-right: 0.2rem;
   background: linear-gradient(145deg, #ffffc0, #e6e6a1);
-  box-shadow: 5px 5px 10px #99996b, -5px -5px 10px #fffffb;
+  box-shadow: 3px 3px 2px #99996b, -5px -5px 10px #ffffc0;
   border-radius: 0.9rem;
   cursor: pointer;
 }
@@ -370,7 +382,7 @@ nav ul {
 }
 .blur {
   background: rgba(255, 255, 255, 0);
-  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+  /* box-shadow: 3px 3px 2px gba(0, 0, 0, 0.1); */
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(5.5px);
   position: absolute;
