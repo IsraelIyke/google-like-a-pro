@@ -30,7 +30,7 @@
 }
 .form-input label {
   position: absolute;
-  left: 10px;
+  left: 30px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.8rem;

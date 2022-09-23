@@ -3,7 +3,13 @@ import { useState, forwardRef } from "react";
 import gifs from "../images/search.gif";
 import gray from "../images/gray.gif";
 import { MdLightMode, MdHistory } from "react-icons/md";
-import { BsToggleOn, BsToggleOff, BsSearch } from "react-icons/bs";
+import {
+  BsToggleOn,
+  BsToggleOff,
+  BsSearch,
+  BsMenuButton,
+} from "react-icons/bs";
+import { AiFillInfoCircle } from "react-icons/ai";
 import Textfield from "./Textfield/textfield";
 import "./Textfield/textfield.css";
 import { Link } from "react-router-dom";
@@ -34,6 +40,36 @@ export default function Google() {
   const [history, setHistory] = useState(false);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
+  const [info1, setInfo1] = useState(false);
+  const [info2, setInfo2] = useState(false);
+  const [info3, setInfo3] = useState(false);
+  const [info4, setInfo4] = useState(false);
+  const [info5, setInfo5] = useState(false);
+  const [info6, setInfo6] = useState(false);
+  const [info7, setInfo7] = useState(false);
+  const [info8, setInfo8] = useState(false);
+  const [info9, setInfo9] = useState(false);
+  const [info10, setInfo10] = useState(false);
+  const [info11, setInfo11] = useState(false);
+  const [info12, setInfo12] = useState(false);
+  const [info13, setInfo13] = useState(false);
+  const [info14, setInfo14] = useState(false);
+  const [info, setInfo] = useState({
+    one: "lorem",
+    two: "ipsum",
+    three: "this",
+    four: "is",
+    five: "important",
+    six: "information",
+    seven: "on",
+    eight: "how",
+    nine: "to",
+    ten: "use",
+    eleven: "the",
+    twelve: "google",
+    thirteen: "like",
+    fourteen: "a",
+  });
   const [intensityZeroPercent, setIntensityZeroPercent] = useState(true);
   const [intensityFiftyPercent, setIntensityFiftyPercent] = useState(false);
   const [intensityHundredPercent, setIntensityHundredPercent] = useState(false);
@@ -58,6 +94,64 @@ export default function Google() {
   }
   function handleCloseWindow() {
     setHistory(false);
+  }
+  function handleCloseInfo() {
+    setInfo1(false);
+    setInfo2(false);
+    setInfo3(false);
+    setInfo4(false);
+    setInfo5(false);
+    setInfo6(false);
+    setInfo7(false);
+    setInfo8(false);
+    setInfo9(false);
+    setInfo10(false);
+    setInfo11(false);
+    setInfo12(false);
+    setInfo13(false);
+    setInfo14(false);
+  }
+  function handleInfo1() {
+    setInfo1((prev) => !prev);
+  }
+  function handleInfo2() {
+    setInfo2((prev) => !prev);
+  }
+  function handleInfo3() {
+    setInfo3((prev) => !prev);
+  }
+  function handleInfo4() {
+    setInfo4((prev) => !prev);
+  }
+  function handleInfo5() {
+    setInfo5((prev) => !prev);
+  }
+  function handleInfo6() {
+    setInfo6((prev) => !prev);
+  }
+  function handleInfo7() {
+    setInfo7((prev) => !prev);
+  }
+  function handleInfo8() {
+    setInfo8((prev) => !prev);
+  }
+  function handleInfo9() {
+    setInfo9((prev) => !prev);
+  }
+  function handleInfo10() {
+    setInfo10((prev) => !prev);
+  }
+  function handleInfo11() {
+    setInfo11((prev) => !prev);
+  }
+  function handleInfo12() {
+    setInfo12((prev) => !prev);
+  }
+  function handleInfo13() {
+    setInfo13((prev) => !prev);
+  }
+  function handleInfo14() {
+    setInfo14((prev) => !prev);
   }
 
   function handleEyeCare() {
@@ -197,6 +291,40 @@ export default function Google() {
 
             {history && (
               <div className="close-window2" onClick={handleCloseWindow}></div>
+            )}
+            {(info1 ||
+              info2 ||
+              info3 ||
+              info4 ||
+              info5 ||
+              info6 ||
+              info7 ||
+              info8 ||
+              info9 ||
+              info10 ||
+              info11 ||
+              info12 ||
+              info13 ||
+              info14) && (
+              <div className="close-window-info" onClick={handleCloseInfo}>
+                <div className="window-info">
+                  <BsMenuButton onClick={handleCloseInfo} />
+                  {info1 && <p>{info.one}</p>}
+                  {info2 && <p>{info.two}</p>}
+                  {info3 && <p>{info.three}</p>}
+                  {info4 && <p>{info.four}</p>}
+                  {info5 && <p>{info.five}</p>}
+                  {info6 && <p>{info.six}</p>}
+                  {info7 && <p>{info.seven}</p>}
+                  {info8 && <p>{info.eight}</p>}
+                  {info9 && <p>{info.nine}</p>}
+                  {info10 && <p>{info.ten}</p>}
+                  {info11 && <p>{info.eleven}</p>}
+                  {info12 && <p>{info.twelve}</p>}
+                  {info13 && <p>{info.thirteen}</p>}
+                  {info14 && <p>{info.fourteen}</p>}
+                </div>
+              </div>
             )}
             <Grid item>
               <nav className="sup-container">
@@ -389,11 +517,17 @@ export default function Google() {
                     (intensityHundredPercent && "para100")
                   }
                 >
-                  use only relevant specifiers
+                  use only relevant specifiers. <br />
+                  Click the <AiFillInfoCircle /> icon to learn more about a
+                  specifier
                 </p>
               </Grid>
               <div className="par">
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo1}
+                  />
                   <Textfield
                     type="text"
                     placeholder="specific website"
@@ -407,6 +541,10 @@ export default function Google() {
                 </Grid>
 
                 <Grid item className={grayscale ? "checks-gray" : "checks"}>
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo2}
+                  />
                   <label htmlFor="exact">exact phrase</label>
                   <input
                     type="checkbox"
@@ -420,19 +558,27 @@ export default function Google() {
 
               {/* 3,4 */}
               <div className="par">
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo3}
+                  />
                   <Textfield
                     type="text"
-                    placeholder="include specific word"
+                    placeholder="specific word"
                     id="word"
-                    label="include specific word"
+                    label="specific word"
                     setState={setWord}
                     value={word}
                     autoComplete="off"
                     grayscale={grayscale}
                   />
                 </Grid>
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo4}
+                  />
                   <Textfield
                     type="text"
                     placeholder="omit specific word"
@@ -448,19 +594,27 @@ export default function Google() {
 
               {/* 5,6 */}
               <div className="par">
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo5}
+                  />
                   <Textfield
                     type="text"
-                    placeholder="exact filetype eg pdf"
+                    placeholder="filetype eg pdf"
                     id="file"
-                    label="exact filetype eg pdf"
+                    label="filetype eg pdf"
                     setState={setFile}
                     value={file}
                     autoComplete="off"
                     grayscale={grayscale}
                   />
                 </Grid>
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo6}
+                  />
                   <Textfield
                     type="text"
                     placeholder="ref year eg 2009"
@@ -477,6 +631,10 @@ export default function Google() {
               {/* 7,8 */}
               <div className="par">
                 <Grid item className={grayscale ? "checks-gray" : "checks"}>
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo7}
+                  />
                   <label htmlFor="exact">exact article title</label>
                   <input
                     type="checkbox"
@@ -486,7 +644,11 @@ export default function Google() {
                     id="title"
                   />
                 </Grid>
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo8}
+                  />
                   <Textfield
                     type="text"
                     placeholder="include synonym"
@@ -503,7 +665,11 @@ export default function Google() {
               {/* 9,10 */}
               <div className="par">
                 <Grid item className={grayscale ? "checks-gray" : "checks"}>
-                  <label htmlFor="exact">find related website</label>
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo9}
+                  />
+                  <label htmlFor="exact">related website</label>
                   <input
                     type="checkbox"
                     checked={related}
@@ -512,12 +678,16 @@ export default function Google() {
                     id="related"
                   />
                 </Grid>
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo10}
+                  />
                   <Textfield
                     type="text"
-                    placeholder="specific geo location"
+                    placeholder="geo location"
                     id="location"
-                    label="specific geo location"
+                    label="geo location"
                     setState={setLocation}
                     value={location}
                     autoComplete="off"
@@ -527,7 +697,11 @@ export default function Google() {
               </div>
               {/* 11,12 */}
               <div className="par">
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo11}
+                  />
                   <Textfield
                     type="text"
                     placeholder="range eg 2yrs..9yrs"
@@ -539,7 +713,11 @@ export default function Google() {
                     grayscale={grayscale}
                   />
                 </Grid>
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo12}
+                  />
                   <Textfield
                     type="text"
                     placeholder="exclude specific website"
@@ -555,24 +733,32 @@ export default function Google() {
 
               {/* 13,14 */}
               <div className="par">
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo13}
+                  />
                   <Textfield
                     type="text"
-                    placeholder="doc pre a yr eg 2009"
+                    placeholder="ref yr eg 2009"
                     id="before"
-                    label="doc pre a yr eg 2009"
+                    label="ref yr eg 2009"
                     setState={setBefore}
                     value={before}
                     autoComplete="off"
                     grayscale={grayscale}
                   />
                 </Grid>
-                <Grid item>
+                <Grid item className="info">
+                  <AiFillInfoCircle
+                    className="info-icon"
+                    onClick={handleInfo14}
+                  />
                   <Textfield
                     type="text"
-                    placeholder="doc post a yr eg 2011"
+                    placeholder="ref yr eg 2011"
                     id="after"
-                    label="doc post a yr eg 2011"
+                    label="ref yr eg 2011"
                     setState={setAfter}
                     value={after}
                     autoComplete="off"
