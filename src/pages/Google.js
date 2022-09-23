@@ -54,7 +54,7 @@ export default function Google() {
   const [info12, setInfo12] = useState(false);
   const [info13, setInfo13] = useState(false);
   const [info14, setInfo14] = useState(false);
-  const [info, setInfo] = useState({
+  const info = {
     one: "lorem",
     two: "ipsum",
     three: "this",
@@ -69,7 +69,7 @@ export default function Google() {
     twelve: "google",
     thirteen: "like",
     fourteen: "a",
-  });
+  };
   const [intensityZeroPercent, setIntensityZeroPercent] = useState(true);
   const [intensityFiftyPercent, setIntensityFiftyPercent] = useState(false);
   const [intensityHundredPercent, setIntensityHundredPercent] = useState(false);
