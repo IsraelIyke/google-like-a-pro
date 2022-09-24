@@ -3,12 +3,8 @@ import { useState, forwardRef } from "react";
 import gifs from "../images/search.gif";
 import gray from "../images/gray.gif";
 import { MdLightMode, MdHistory } from "react-icons/md";
-import {
-  BsToggleOn,
-  BsToggleOff,
-  BsSearch,
-  BsMenuButton,
-} from "react-icons/bs";
+import { BsToggleOn, BsToggleOff, BsSearch } from "react-icons/bs";
+import { TiTimes } from "react-icons/ti";
 import { AiFillInfoCircle } from "react-icons/ai";
 import Textfield from "./Textfield/textfield";
 import "./Textfield/textfield.css";
@@ -54,25 +50,32 @@ export default function Google() {
   const [info12, setInfo12] = useState(false);
   const [info13, setInfo13] = useState(false);
   const [info14, setInfo14] = useState(false);
-  const info = {
-    one: "lorem",
-    two: "ipsum",
-    three: "this",
-    four: "is",
-    five: "important",
-    six: "information",
-    seven: "on",
-    eight: "how",
-    nine: "to",
-    ten: "use",
-    eleven: "the",
-    twelve: "google",
-    thirteen: "like",
-    fourteen: "a",
-  };
   const [intensityZeroPercent, setIntensityZeroPercent] = useState(false);
   const [intensityFiftyPercent, setIntensityFiftyPercent] = useState(false);
   const [intensityHundredPercent, setIntensityHundredPercent] = useState(true);
+  const info = {
+    one: "This specifier/operator is used when you want to search only a particular website. By doing this, No search result from other websites will appear except for the one you added.",
+    two: "When you use this specifier/operator, google will only search for articles/posts that contains that phrase in the same order that you searched it.",
+    three:
+      "this is just like exact phrase except that it includes the word you entered and searches for posts that contains both your main search and the specific word. Search results that does not contain the specific word will not be shown.",
+    four: "Unlike the specific word specifier/operator, this specifier makes sure that it omit that word from your search. This means that your search result will only show post that does not contain the omitted word",
+    five: "The file type specifier/operator search for files with type or extension you specified. For instance, if you choose to search only doc or mp4 files your search result will contain only post with that file type or extension.",
+    six: "You can narrow your search down to a particular year by using this operator/specifier. For instance, if you are looking for posts/articles that were published or in some cases references a particular year, this specifier shows you search result on that year.",
+    seven:
+      "This is similar to exact phrase specifier except that it search for webpages or articles that contains same title as your search.",
+    eight:
+      "Simple but nice to have. This specifier/operator searches articles that contains close words to the one you entered.",
+    nine: "You can find website related to the one you are search. For instance, if you search google.com with this specifier/operator, it will show results like yahoo.com, bing.com, etc. But not all website will get related websites result from google.",
+    ten: "Use this this specifier to search only articles/post from or about a particular continent, country, state, or even city. For instance you can search for 'foods' with the geo location example Nigeria and will get search result about food from only Nigeria.",
+    eleven:
+      "Use this specifier/operator when your search requires range. You can use it to find results between two years for example 2009 to 2018 or goods/products between two price range example 2$ to 5$. Remember to add two dots (ie ..) between the two numbers.",
+    twelve:
+      "Unlike the specific website specifier/operator, this specifier makes sure to remove the website you entered from your search result. For instance, if you want to search a movie but don't want search result from netflix, this specifier will exclude it",
+    thirteen:
+      "This searches for posts/articles that were posted before the year you entered. In some cases, finds pages that referenced years before the year you entered",
+    fourteen:
+      "This searches for posts/articles that were posted after the year you entered. In some cases, finds pages that referenced years after the year you entered",
+  };
 
   const handleClick = () => {
     setOpen(true);
@@ -221,7 +224,7 @@ export default function Google() {
         after
       ) {
         return `${site.length > 0 ? `site:${site}` : ""}${exact ? " " : ""}${
-          exact ? `"${prev}"` : ` ${prev}`
+          exact ? `"${prev}"` : related ? `related:${prev}` : ` ${prev}`
         }${file.length > 0 ? " " : ""}${
           file.length > 0 ? `filetype:${file}` : ""
         }${year.length > 0 ? " " : ""}${
@@ -240,9 +243,7 @@ export default function Google() {
           before.length > 0 ? `BEFORE:${before}` : ""
         }${after.length > 0 ? " " : ""}${
           after.length > 0 ? `AFTER:${after}` : ""
-        }${title ? " " : ""}${title ? `allintitle:"${prev}"` : ""}${
-          related ? " " : ""
-        }${related ? `related:${prev}` : ""}`;
+        }${title ? " " : ""}${title ? `allintitle:"${prev}"` : ""}`;
       }
     });
   }
@@ -306,24 +307,128 @@ export default function Google() {
               info12 ||
               info13 ||
               info14) && (
-              <div className="close-window-info" onClick={handleCloseInfo}>
-                <div className="window-info">
-                  <BsMenuButton onClick={handleCloseInfo} />
-                  {info1 && <p>{info.one}</p>}
-                  {info2 && <p>{info.two}</p>}
-                  {info3 && <p>{info.three}</p>}
-                  {info4 && <p>{info.four}</p>}
-                  {info5 && <p>{info.five}</p>}
-                  {info6 && <p>{info.six}</p>}
-                  {info7 && <p>{info.seven}</p>}
-                  {info8 && <p>{info.eight}</p>}
-                  {info9 && <p>{info.nine}</p>}
-                  {info10 && <p>{info.ten}</p>}
-                  {info11 && <p>{info.eleven}</p>}
-                  {info12 && <p>{info.twelve}</p>}
-                  {info13 && <p>{info.thirteen}</p>}
-                  {info14 && <p>{info.fourteen}</p>}
-                </div>
+              <div
+                className="close-window-info"
+                onClick={handleCloseInfo}
+              ></div>
+            )}
+            {(info1 ||
+              info2 ||
+              info3 ||
+              info4 ||
+              info5 ||
+              info6 ||
+              info7 ||
+              info8 ||
+              info9 ||
+              info10 ||
+              info11 ||
+              info12 ||
+              info13 ||
+              info14) && (
+              <div className="window-info">
+                <TiTimes
+                  onClick={handleCloseInfo}
+                  style={{ fontSize: "1.5rem", marginLeft: "15rem" }}
+                />
+                {info1 && (
+                  <>
+                    <strong>Specific website: </strong>
+                    <br />
+                    {info.one}
+                  </>
+                )}
+                {info2 && (
+                  <>
+                    <strong>Exact phrase: </strong>
+                    <br />
+                    {info.two}
+                  </>
+                )}
+                {info3 && (
+                  <>
+                    <strong>Specific word: </strong>
+                    <br />
+                    {info.three}
+                  </>
+                )}
+                {info4 && (
+                  <>
+                    <strong>Omit specific word: </strong>
+                    <br />
+                    {info.four}
+                  </>
+                )}
+                {info5 && (
+                  <>
+                    <strong>File type: </strong>
+                    <br />
+                    {info.five}
+                  </>
+                )}
+                {info6 && (
+                  <>
+                    <strong>Ref year: </strong>
+                    <br />
+                    {info.six}
+                  </>
+                )}
+                {info7 && (
+                  <>
+                    <strong>Exact article title: </strong>
+                    <br />
+                    {info.seven}
+                  </>
+                )}
+                {info8 && (
+                  <>
+                    <strong>Include synonym: </strong>
+                    <br />
+                    {info.eight}
+                  </>
+                )}
+                {info9 && (
+                  <>
+                    <strong>Related website</strong>
+                    <br />
+                    {info.nine}
+                  </>
+                )}
+                {info10 && (
+                  <>
+                    <strong>Geo location: </strong>
+                    <br />
+                    {info.ten}
+                  </>
+                )}
+                {info11 && (
+                  <>
+                    <strong>Range: </strong>
+                    <br />
+                    {info.eleven}
+                  </>
+                )}
+                {info12 && (
+                  <>
+                    <strong>Exclude a website: </strong>
+                    <br />
+                    {info.twelve}
+                  </>
+                )}
+                {info13 && (
+                  <>
+                    <strong>Before a ref yr: </strong>
+                    <br />
+                    {info.thirteen}
+                  </>
+                )}
+                {info14 && (
+                  <>
+                    <strong>After a ref yr: </strong>
+                    <br />
+                    {info.fourteen}
+                  </>
+                )}
               </div>
             )}
             <Grid item>
@@ -461,7 +566,17 @@ export default function Google() {
                 </h2>
               </div>
             </Grid>
-
+            <Grid item>
+              <h3
+                style={
+                  intensityZeroPercent
+                    ? { zIndex: 2, position: "relative", color: "purple" }
+                    : { zIndex: 2, position: "relative" }
+                }
+              >
+                Narrow down your google searches
+              </h3>
+            </Grid>
             <form
               action="https://google.com/search"
               onSubmit={handleSubmit}
@@ -601,9 +716,9 @@ export default function Google() {
                   />
                   <Textfield
                     type="text"
-                    placeholder="filetype eg pdf"
+                    placeholder="file type eg pdf"
                     id="file"
-                    label="filetype eg pdf"
+                    label="file type eg pdf"
                     setState={setFile}
                     value={file}
                     autoComplete="off"
@@ -635,7 +750,7 @@ export default function Google() {
                     className="info-icon"
                     onClick={handleInfo7}
                   />
-                  <label htmlFor="exact">exact article title</label>
+                  <label htmlFor="title">exact article title</label>
                   <input
                     type="checkbox"
                     checked={title}
@@ -669,7 +784,7 @@ export default function Google() {
                     className="info-icon"
                     onClick={handleInfo9}
                   />
-                  <label htmlFor="exact">related website</label>
+                  <label htmlFor="related">related website</label>
                   <input
                     type="checkbox"
                     checked={related}
@@ -740,9 +855,9 @@ export default function Google() {
                   />
                   <Textfield
                     type="text"
-                    placeholder="before ref yr"
+                    placeholder="before a ref yr"
                     id="before"
-                    label="before ref yr"
+                    label="before a ref yr"
                     setState={setBefore}
                     value={before}
                     autoComplete="off"
@@ -756,9 +871,9 @@ export default function Google() {
                   />
                   <Textfield
                     type="text"
-                    placeholder="after ref yr"
+                    placeholder="after a ref yr"
                     id="after"
-                    label="after ref yr"
+                    label="after a ref yr"
                     setState={setAfter}
                     value={after}
                     autoComplete="off"
