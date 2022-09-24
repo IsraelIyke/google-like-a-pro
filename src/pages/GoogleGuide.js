@@ -12,6 +12,7 @@ const GoogleGuide = () => {
       input container your specifiers/operators. Although, this should happen
       automatically.
     </div>
+<a href="https://youtu.be/cEBkvm0-rg0">Watch video</a>
   );
 };
 
