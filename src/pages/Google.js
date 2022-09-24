@@ -70,9 +70,9 @@ export default function Google() {
     thirteen: "like",
     fourteen: "a",
   };
-  const [intensityZeroPercent, setIntensityZeroPercent] = useState(true);
+  const [intensityZeroPercent, setIntensityZeroPercent] = useState(false);
   const [intensityFiftyPercent, setIntensityFiftyPercent] = useState(false);
-  const [intensityHundredPercent, setIntensityHundredPercent] = useState(false);
+  const [intensityHundredPercent, setIntensityHundredPercent] = useState(true);
 
   const handleClick = () => {
     setOpen(true);
@@ -157,10 +157,10 @@ export default function Google() {
   function handleEyeCare() {
     setGrayscale((prev) => !prev);
     if (!grayscale) {
-      setIntensityZeroPercent(true);
+      setIntensityHundredPercent(true);
     }
     setIntensityFiftyPercent(false);
-    setIntensityHundredPercent(false);
+    setIntensityZeroPercent(false);
   }
 
   function handle0() {
@@ -265,10 +265,10 @@ export default function Google() {
   return (
     <div
       className={
+        (grayscale && "container-grayscale") ||
         (intensityZeroPercent && "container-dark") ||
         (intensityFiftyPercent && "container-dark50") ||
-        (intensityHundredPercent && "container-dark100") ||
-        (grayscale && "container-grayscale")
+        (intensityHundredPercent && "container-dark100")
       }
     >
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -356,19 +356,19 @@ export default function Google() {
                             className={intensityZeroPercent && "active"}
                             onClick={handle0}
                           >
-                            0%
+                            dark
                           </p>
                           <p
                             className={intensityFiftyPercent && "active"}
                             onClick={handle50}
                           >
-                            50%
+                            gray
                           </p>
                           <p
                             className={intensityHundredPercent && "active"}
                             onClick={handle100}
                           >
-                            100%
+                            light
                           </p>
                         </li>
 
@@ -517,9 +517,9 @@ export default function Google() {
                     (intensityHundredPercent && "para100")
                   }
                 >
-                  use only relevant specifiers. <br />
+                  Use only relevant specifiers. <br />
                   Click the <AiFillInfoCircle /> icon to learn more about a
-                  specifier
+                  specifier.
                 </p>
               </Grid>
               <div className="par">
@@ -740,9 +740,9 @@ export default function Google() {
                   />
                   <Textfield
                     type="text"
-                    placeholder="ref yr eg 2009"
+                    placeholder="before ref yr"
                     id="before"
-                    label="ref yr eg 2009"
+                    label="before ref yr"
                     setState={setBefore}
                     value={before}
                     autoComplete="off"
@@ -756,9 +756,9 @@ export default function Google() {
                   />
                   <Textfield
                     type="text"
-                    placeholder="ref yr eg 2011"
+                    placeholder="after ref yr"
                     id="after"
-                    label="ref yr eg 2011"
+                    label="after ref yr"
                     setState={setAfter}
                     value={after}
                     autoComplete="off"
