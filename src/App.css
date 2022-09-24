@@ -450,6 +450,7 @@ nav ul {
   width: 15rem;
   height: 15rem;
   border-radius: 1rem;
+  z-index: 4;
 }
 .close-window2 {
   background: transparent;
