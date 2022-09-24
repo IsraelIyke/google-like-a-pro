@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Google />} />
-        <Route path="/google-like-a-pro/guide" element={<GoogleGuide />} />
+        <Route path="/guide" element={<GoogleGuide />} />
         <Route path="*" element={<P404 />} />
       </Routes>
     </Router>
