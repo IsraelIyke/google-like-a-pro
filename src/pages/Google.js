@@ -54,10 +54,10 @@ export default function Google() {
   const [intensityFiftyPercent, setIntensityFiftyPercent] = useState(false);
   const [intensityHundredPercent, setIntensityHundredPercent] = useState(true);
   const info = {
-    one: "This specifier/operator is used when you want to search only a particular website. By doing this, No search result from other websites will appear except for the one you added.",
+    one: "This specifier/operator is used when you want to search only a particular website. By doing this, no search result from other websites will appear except for the one you added.",
     two: "When you use this specifier/operator, google will only search for articles/posts that contains that phrase in the same order that you searched it.",
     three:
-      "this is just like exact phrase except that it includes the word you entered and searches for posts that contains both your main search and the specific word. Search results that does not contain the specific word will not be shown.",
+      "This is just like exact phrase except that it includes the word you entered and searches for posts that contains both your main search and the specific word. Search results that does not contain the specific word will not be shown.",
     four: "Unlike the specific word specifier/operator, this specifier makes sure that it omit that word from your search. This means that your search result will only show post that does not contain the omitted word",
     five: "The file type specifier/operator search for files with type or extension you specified. For instance, if you choose to search only doc or mp4 files your search result will contain only post with that file type or extension.",
     six: "You can narrow your search down to a particular year by using this operator/specifier. For instance, if you are looking for posts/articles that were published or in some cases references a particular year, this specifier shows you search result on that year.",
@@ -65,8 +65,8 @@ export default function Google() {
       "This is similar to exact phrase specifier except that it search for webpages or articles that contains same title as your search.",
     eight:
       "Simple but nice to have. This specifier/operator searches articles that contains close words to the one you entered.",
-    nine: "You can find website related to the one you are search. For instance, if you search google.com with this specifier/operator, it will show results like yahoo.com, bing.com, etc. But not all website will get related websites result from google.",
-    ten: "Use this this specifier to search only articles/post from or about a particular continent, country, state, or even city. For instance you can search for 'foods' with the geo location example Nigeria and will get search result about food from only Nigeria.",
+    nine: "You can find website related to the one you are searching. For instance, if you search google.com with this specifier/operator, it will show results like yahoo.com, bing.com, etc. But not all website will get related websites result from google.",
+    ten: "Use this specifier to search only articles/post from or about a particular continent, country, state, or even city. For instance you can search for 'foods' with the geo location example Nigeria and will get search result about food from only Nigeria.",
     eleven:
       "Use this specifier/operator when your search requires range. You can use it to find results between two years for example 2009 to 2018 or goods/products between two price range example 2$ to 5$. Remember to add two dots (ie ..) between the two numbers.",
     twelve:
@@ -326,7 +326,10 @@ export default function Google() {
               info12 ||
               info13 ||
               info14) && (
-              <div className="window-info">
+              <div
+                className="window-info"
+                style={grayscale ? { color: "black" } : { color: "black" }}
+              >
                 <TiTimes
                   onClick={handleCloseInfo}
                   style={{ fontSize: "1.5rem", marginLeft: "15rem" }}
@@ -463,12 +466,12 @@ export default function Google() {
                           >
                             dark
                           </p>
-                          <p
+                          {/* <p
                             className={intensityFiftyPercent && "active"}
                             onClick={handle50}
                           >
                             gray
-                          </p>
+                          </p> */}
                           <p
                             className={intensityHundredPercent && "active"}
                             onClick={handle100}

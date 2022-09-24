@@ -244,8 +244,9 @@ nav {
 }
 .intensity-option .percent p {
   padding: 0.4rem;
-  width: 2.5rem;
+  width: 3.9rem;
   height: 2rem;
+  text-align: center;
   margin-bottom: -0.1rem;
   margin-top: -0.2rem;
   margin-right: 0.2rem;
@@ -308,8 +309,9 @@ nav {
 
 .intensity-option-gray .percent p {
   padding: 0.4rem;
-  width: 2.5rem;
+  width: 3.9rem;
   height: 2rem;
+  text-align: center;
   margin-bottom: -0.1rem;
   margin-top: -0.2rem;
   margin-right: 0.2rem;
@@ -366,8 +368,9 @@ nav {
 }
 .intensity-option100 .percent p {
   padding: 0.4rem;
-  width: 2.5rem;
+  width: 3.9rem;
   height: 2rem;
+  text-align: center;
   margin-bottom: -0.1rem;
   margin-top: -0.2rem;
   margin-right: 0.2rem;
