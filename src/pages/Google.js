@@ -223,8 +223,8 @@ export default function Google() {
         before ||
         after
       ) {
-        return `${site.length > 0 ? `site:${site}` : ""}${exact ? " " : ""}${
-          exact ? `"${prev}"` : related ? `related:${prev}` : ` ${prev}`
+        return `${site.length > 0 ? `site:${site}` : ""} ${
+          exact ? `"${prev}"` : related ? `related:${prev}` : `${prev}`
         }${file.length > 0 ? " " : ""}${
           file.length > 0 ? `filetype:${file}` : ""
         }${year.length > 0 ? " " : ""}${
