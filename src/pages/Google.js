@@ -260,7 +260,9 @@ export default function Google() {
       handle();
     }
   }
-  
+  function handleClear() {
+    setSearch(localStorage.getItem("search"));
+  }
   return (
     <div
       className={
