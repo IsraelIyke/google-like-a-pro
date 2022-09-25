@@ -260,9 +260,9 @@ export default function Google() {
       handle();
     }
   }
-  function handleClear() {
-    setSearch(localStorage.getItem("search"));
-  }
+  //function handleClear() {
+   // setSearch(localStorage.getItem("search"));
+  //}
   return (
     <div
       className={
@@ -583,7 +583,7 @@ export default function Google() {
             <form
               action="https://google.com/search"
               onSubmit={handleSubmit}
-              target="_blank"
+              
             >
               <Grid item>
                 <div
