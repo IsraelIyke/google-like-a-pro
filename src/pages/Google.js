@@ -224,7 +224,7 @@ export default function Google() {
         after
       ) {
         return `${site.length > 0 ? `site:${site}` : ""} ${
-          exact ? `"${prev}"` : related ? `related:${prev}` : `${prev}`
+          exact ? related? `related:"${prev}"`:`"${prev}"`: related ? `related:${prev}` : `${prev}`
         }${file.length > 0 ? " " : ""}${
           file.length > 0 ? `filetype:${file}` : ""
         }${year.length > 0 ? " " : ""}${
@@ -243,7 +243,7 @@ export default function Google() {
           before.length > 0 ? `BEFORE:${before}` : ""
         }${after.length > 0 ? " " : ""}${
           after.length > 0 ? `AFTER:${after}` : ""
-        }${title ? " " : ""}${title ? `allintitle:"${prev}"` : ""}`;
+        }${title ? " " : ""}${title ? `allintitle:${prev}` : ""}`;
       }
     });
   }
